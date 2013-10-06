@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+    
+    <TextView 
+        android:id="@+id/top"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:background="#EEEEEE"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="顶部栏"/>
+    
+    <View 
+        android:id="@+id/line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_below="@+id/top"
+        android:background="#000000"/>
+
+    <LinearLayout 
+        android:id="@+id/continer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/line"
+        android:layout_above="@+id/radioGroup"
+        android:orientation="vertical"/>
+    
+    <RadioGroup 
+        android:id="@+id/radioGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        
+         <RadioButton 
+            android:id="@+id/btn_1"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_weight="1"
+            android:button="@null"
+            android:background="#ff6600"/>
+        
+        <RadioButton 
+            android:id="@+id/btn_2"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_weight="1"
+            android:button="@null"
+            android:background="#0000ff"/>
+        
+        <RadioButton 
+            android:id="@+id/btn_3"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_weight="1"
+            android:button="@null"
+            android:background="#cc9999"/>
+        
+        <RadioButton 
+            android:id="@+id/btn_4"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_weight="1"
+            android:button="@null"
+            android:background="#99cc33"/>
+    </RadioGroup>
+
+</RelativeLayout>
