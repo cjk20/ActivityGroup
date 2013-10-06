@@ -9,7 +9,7 @@ public class ActivityChild extends Activity{
 	
 	/** 是否需要重新创建*/
 	private boolean reCreate;
-	private ActivityGroup parent;
+	protected ActivityGroup parent;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +102,14 @@ public class ActivityChild extends Activity{
 						startActivityAtParent(parent.getIndex().getSimpleName(), new Intent(parent, parent.getIndex()));
 						return false;
 					}
+				}
+			}
+			
+			for(int i=0;i<parent.childs.size();i++){
+				if(getClass().getSimpleName().equals(parent.childs.get(i))){
+//					startActivityAtParent(parent.childs.get(i-1), new Intent(parent, ));
+					finish();
+					return false;
 				}
 			}
 		}

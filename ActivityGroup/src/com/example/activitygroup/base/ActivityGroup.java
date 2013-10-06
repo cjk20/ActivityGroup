@@ -36,6 +36,8 @@ public abstract class ActivityGroup extends Activity implements Serializable{
 	/** 首页activityName*/
 	private Class<?> index;
 	
+	public ArrayList<String>  childs;
+	
     
     public ActivityGroup() {
         this(true);
@@ -51,6 +53,7 @@ public abstract class ActivityGroup extends Activity implements Serializable{
         Bundle states = savedInstanceState != null
                 ? (Bundle) savedInstanceState.getBundle(STATES_KEY) : null;
         mLocalActivityManager.dispatchCreate(states);
+        childs = new ArrayList<String>();
     }
 
     @Override
@@ -104,7 +107,7 @@ public abstract class ActivityGroup extends Activity implements Serializable{
         }else{
         	nextActivity.onResume();
         }
-
+        
         //加载Activity
         container.addView(
         		mLocalActivityManager.getActivity(activityName)
@@ -112,7 +115,43 @@ public abstract class ActivityGroup extends Activity implements Serializable{
                 new LayoutParams(LayoutParams.FILL_PARENT,
                         LayoutParams.FILL_PARENT));
         showingActivityName = activityName;
+        addChild(activityName);
     }
+	
+	/**
+	 * 添加子activity到list中
+	 * @param activityName
+	 */
+	private void addChild(String activityName){
+		if(activityName == null){
+			return ;
+		}
+		
+		for(int i=0;i<childs.size();i++){
+			if(activityName.equals(childs.get(i))){
+				childs.remove(i);
+			}
+		}
+		
+		childs.add(activityName);
+	}
+	
+	/**
+	 * 从list中删除子activity
+	 * @param activityName
+	 */
+	private void delChild(String activityName){
+		if(activityName == null){
+			return ;
+		}
+		
+		for(int i=0;i<childs.size();i++){
+			if(activityName.equals(childs.get(i))){
+				childs.remove(i);
+			}
+		}
+		
+	}
 	
 	/**
 	 * 设置导航栏的activityname
@@ -205,5 +244,6 @@ public abstract class ActivityGroup extends Activity implements Serializable{
 			return;
 		}
 		mLocalActivityManager.destroyActivity(activity.getClass().getSimpleName(), true);
+		delChild(activity.getClass().getSimpleName());
 	}
 }
